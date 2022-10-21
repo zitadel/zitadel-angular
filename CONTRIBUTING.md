@@ -31,30 +31,29 @@ A quick guide on how to setup your ZITADEL app locally to work on it and test ou
 1. Clone the repo:
 
 ```sh
-git clone https://github.com/zitadel/zitadel-nextjs.git
-cd zitadel-nextjs
+git clone https://github.com/zitadel/zitadel-angular.git
+cd zitadel-angular
 ```
 
 3. Install packages. Developing requires Node.js v16:
 
 ```sh
-yarn install
+npm install
 ```
 
-4. Populate `.env.local`:
+4. Set up `environment`:
 
-Copy `.env` to `.env.local`, and add your instance env variables for each entry.
+Go to `src/app/app.modules.ts`
 
-```sh
-cp .env .env.local
-```
+Replace <YOUR DOMAIN> (4 times) with the domain of your own ZITADEL instance
+Replace <YOUR APPS CLIENT ID HERE> (once) with your application clientId
 
 5. Start the developer application/server:
 
 ```sh
-npm run dev
+npm start
 ```
 
-Your developer application will be available on `http://localhost:3000`
+Your developer application will be available on `http://localhost:4200`
 
 That's it! 🎉
