@@ -31,12 +31,3 @@ export class StorageService implements OAuthStorage {
     return `${STORAGE_PREFIX}:${key}`;
   }
 }
-
-export class StorageConfig {
-  clientId: string = '';
-  storage: Storage = window.sessionStorage;
-}
-
-export enum StorageKey {
-  organization = 'organization',
-}
