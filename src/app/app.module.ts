@@ -16,8 +16,8 @@ const authConfig: AuthConfig = {
   scope: 'openid profile email offline_access',
   responseType: 'code',
   oidc: true,
-  clientId: '186041714027331841@examples', //'<YOUR APPS CLIENT ID HERE>',
-  issuer: 'https://bringmos-dev-mfhquc.zitadel.cloud', //'<YOUR DOMAIN>', // eg. https://acme-jdo9fs.zitadel.cloud
+  clientId: '<YOUR APPS CLIENT ID HERE>',
+  issuer: '<YOUR DOMAIN>', // eg. https://acme-jdo9fs.zitadel.cloud
   redirectUri: 'http://localhost:4200/auth/callback',
   postLogoutRedirectUri: 'http://localhost:4200/signedout',
   requireHttps: false, // required for running locally
