@@ -13,69 +13,60 @@ import { StatehandlerService, StatehandlerServiceImpl } from './services/stateha
 import { StorageService } from './services/storage.service';
 
 const authConfig: AuthConfig = {
-    scope: 'openid profile email',
-    responseType: 'code',
-    oidc: true,
-    clientId: '<YOUR APPS CLIENT ID HERE>',
-    issuer: '<YOUR DOMAIN>', // eg. https://acme-jdo9fs.zitadel.cloud
-    redirectUri: 'http://localhost:4200/auth/callback',
-    postLogoutRedirectUri: 'http://localhost:4200/signedout',
-    requireHttps: false // required for running locally
+  scope: 'openid profile email offline_access',
+  responseType: 'code',
+  oidc: true,
+  clientId: '<YOUR APPS CLIENT ID HERE>',
+  issuer: '<YOUR DOMAIN>', // eg. https://acme-jdo9fs.zitadel.cloud
+  redirectUri: 'http://localhost:4200/auth/callback',
+  postLogoutRedirectUri: 'http://localhost:4200/signedout',
+  requireHttps: false, // required for running locally
 };
 
 const stateHandlerFn = (stateHandler: StatehandlerService) => {
-    return () => {
-        return stateHandler.initStateHandler();
-    };
+  return () => {
+    return stateHandler.initStateHandler();
+  };
 };
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        SignedOutComponent,
-        UserComponent,
-        HomeComponent,
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        OAuthModule.forRoot({
-            resourceServer: {
-                allowedUrls: [
-                    '<YOUR DOMAIN>/caos.zitadel.auth.api.v1.AuthService', 
-                    '<YOUR DOMAIN>/oauth/v2/userinfo', 
-                    '<YOUR DOMAIN>/caos.zitadel.management.api.v1.ManagementService/', 
-                    'https://preview.api.zitadel.caos.ch'],
-                sendAccessToken: true,
-            },
-        }),
-    ],
+  declarations: [AppComponent, SignedOutComponent, UserComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['<YOUR DOMAIN>/admin/v1', '<YOUR DOMAIN>/management/v1', '<YOUR DOMAIN>/auth/v1/'],
+        sendAccessToken: true,
+      },
+    }),
+  ],
 
-    providers: [
-        {
-            provide: APP_INITIALIZER,
-            useFactory: stateHandlerFn,
-            multi: true,
-            deps: [StatehandlerService],
-        },
-        {
-            provide: AuthConfig,
-            useValue: authConfig,
-        },
-        {
-            provide: StatehandlerProcessorService,
-            useClass: StatehandlerProcessorServiceImpl,
-        },
-        {
-            provide: StatehandlerService,
-            useClass: StatehandlerServiceImpl,
-        },
-        {
-            provide: OAuthStorage,
-            useClass: StorageService,
-        },
-    ],
-    bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: stateHandlerFn,
+      multi: true,
+      deps: [StatehandlerService],
+    },
+    {
+      provide: AuthConfig,
+      useValue: authConfig,
+    },
+    {
+      provide: StatehandlerProcessorService,
+      useClass: StatehandlerProcessorServiceImpl,
+    },
+    {
+      provide: StatehandlerService,
+      useClass: StatehandlerServiceImpl,
+    },
+    {
+      provide: OAuthStorage,
+      useClass: StorageService,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
