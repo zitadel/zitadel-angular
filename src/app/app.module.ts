@@ -37,12 +37,7 @@ const stateHandlerFn = (stateHandler: StatehandlerService) => {
     HttpClientModule,
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: [
-          '<YOUR DOMAIN>/caos.zitadel.auth.api.v1.AuthService',
-          '<YOUR DOMAIN>/oauth/v2/userinfo',
-          '<YOUR DOMAIN>/caos.zitadel.management.api.v1.ManagementService/',
-          'https://preview.api.zitadel.caos.ch',
-        ],
+        allowedUrls: ['<YOUR DOMAIN>/admin/v1', '<YOUR DOMAIN>/management/v1', '<YOUR DOMAIN>/auth/v1/'],
         sendAccessToken: true,
       },
     }),
