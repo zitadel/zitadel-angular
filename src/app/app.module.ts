@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthConfig, OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
@@ -29,44 +29,37 @@ const stateHandlerFn = (stateHandler: StatehandlerService) => {
   };
 };
 
-@NgModule({
-  declarations: [AppComponent, SignedOutComponent, UserComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    OAuthModule.forRoot({
-      resourceServer: {
-        allowedUrls: ['<YOUR DOMAIN>/admin/v1', '<YOUR DOMAIN>/management/v1', '<YOUR DOMAIN>/auth/v1/'],
-        sendAccessToken: true,
-      },
-    }),
-  ],
-
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: stateHandlerFn,
-      multi: true,
-      deps: [StatehandlerService],
-    },
-    {
-      provide: AuthConfig,
-      useValue: authConfig,
-    },
-    {
-      provide: StatehandlerProcessorService,
-      useClass: StatehandlerProcessorServiceImpl,
-    },
-    {
-      provide: StatehandlerService,
-      useClass: StatehandlerServiceImpl,
-    },
-    {
-      provide: OAuthStorage,
-      useClass: StorageService,
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent, SignedOutComponent, UserComponent, HomeComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        OAuthModule.forRoot({
+            resourceServer: {
+                allowedUrls: ['<YOUR DOMAIN>/admin/v1', '<YOUR DOMAIN>/management/v1', '<YOUR DOMAIN>/auth/v1/'],
+                sendAccessToken: true,
+            },
+        })], providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: stateHandlerFn,
+            multi: true,
+            deps: [StatehandlerService],
+        },
+        {
+            provide: AuthConfig,
+            useValue: authConfig,
+        },
+        {
+            provide: StatehandlerProcessorService,
+            useClass: StatehandlerProcessorServiceImpl,
+        },
+        {
+            provide: StatehandlerService,
+            useClass: StatehandlerServiceImpl,
+        },
+        {
+            provide: OAuthStorage,
+            useClass: StorageService,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
