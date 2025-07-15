@@ -1,6 +1,6 @@
 # ZitadelAngularTemplate
 
-This is our Zitadel Angular Template. If shows how to authenticate as a user and retrieve user information from the OIDC endpoint.
+This is our Zitadel Angular Template. It shows how to authenticate as a user and retrieve user information from the OIDC endpoint.
 
 <img width="790" alt="template" src="https://user-images.githubusercontent.com/10165752/110756388-6ba37f80-824a-11eb-841a-411a49d9588b.png">
 
