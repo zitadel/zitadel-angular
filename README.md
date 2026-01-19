@@ -13,8 +13,8 @@ To run the example you need to create your ZITADEL instance. If you not already 
 1. Create ZITADEL instance on zitadel.cloud
 2. Login to your ZITADEL instance and create an app according to the [example](https://zitadel.com/docs/examples/login/angular)
 3. Go to app.module.ts
-   1. Replace <YOUR DOMAIN> (4 times) with the domain of your own ZITADEL instance
-   2. Replace <YOUR APPS CLIENT ID HERE> (once) with the client id created in the app in step 2
+   1. Replace ${CUSTOM_DOMAIN} (4 times) with the Custom Domain of your own ZITADEL instance
+   2. Replace ${CLIENT_ID} (once) with the client id created in the app in step 2
 
 ## Development server
 

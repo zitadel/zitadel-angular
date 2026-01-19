@@ -45,8 +45,8 @@ npm install
 
 Go to `src/app/app.modules.ts`
 
-Replace <YOUR DOMAIN> (4 times) with the domain of your own ZITADEL instance
-Replace <YOUR APPS CLIENT ID HERE> (once) with your application clientId
+Replace ${CUSTOM_DOMAIN} (4 times) with the Custom Domain of your own ZITADEL instance
+Replace ${CLIENT_ID} (once) with your application clientId
 
 5. Start the developer application/server:
 
