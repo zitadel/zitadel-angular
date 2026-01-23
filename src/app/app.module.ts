@@ -16,8 +16,8 @@ const authConfig: AuthConfig = {
   scope: 'openid profile email offline_access',
   responseType: 'code',
   oidc: true,
-  clientId: '<YOUR APPS CLIENT ID HERE>',
-  issuer: '<YOUR DOMAIN>', // eg. https://acme-jdo9fs.zitadel.cloud
+  clientId: '${CLIENT_ID}',
+  issuer: '${CUSTOM_DOMAIN}', // eg. https://acme-jdo9fs.zitadel.cloud
   redirectUri: 'http://localhost:4200/auth/callback',
   postLogoutRedirectUri: 'http://localhost:4200/signedout',
   requireHttps: false, // required for running locally
@@ -34,7 +34,7 @@ const stateHandlerFn = (stateHandler: StatehandlerService) => {
         AppRoutingModule,
         OAuthModule.forRoot({
             resourceServer: {
-                allowedUrls: ['<YOUR DOMAIN>/admin/v1', '<YOUR DOMAIN>/management/v1', '<YOUR DOMAIN>/auth/v1/'],
+                allowedUrls: ['${CUSTOM_DOMAIN}/admin/v1', '${CUSTOM_DOMAIN}/management/v1', '${CUSTOM_DOMAIN}/auth/v1/'],
                 sendAccessToken: true,
             },
         })], providers: [
