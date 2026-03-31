@@ -1,3 +1,7 @@
+[!WARNING]
+This repository is archived and no longer maintained.
+For the latest version and active development, please refer to [zitadel/example-auth-angular](https://github.com/zitadel/example-auth-angular).
+
 # ZitadelAngularTemplate
 
 This is our Zitadel Angular Template. It shows how to authenticate as a user and retrieve user information from the OIDC endpoint.
